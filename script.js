@@ -4,11 +4,18 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
+const remove_active = () => {
+  operator_btns.forEach((btn) => {
+   btn.classList.remove("active")
+  ;});
+ };
+
 const output = document.getElementById("output");
 const operand_btns = document.querySelectorAll("button[data-type=operand]");
 let is_operator = false;
 operand_btns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
+    remove_active();
     if (output.value == "0") {
       output.value = e.target.value;
     } else if (output.value.includes(".")) {
@@ -27,6 +34,7 @@ const operator_btns = document.querySelectorAll("button[data-type=operator]");
 let equation = [];
 operator_btns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
+    remove_active();
     e.currentTarget.classList.add("active");
 
     switch (e.target.value) {
